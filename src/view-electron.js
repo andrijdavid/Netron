@@ -3,6 +3,7 @@
 var electron = require('electron');
 var fs = require('fs');
 var path = require('path');
+var process = require('process');
 
 class ElectronHost {
 
@@ -16,6 +17,17 @@ class ElectronHost {
     initialize(view) {
         this._view = view;
         this._view.show('welcome');
+
+        window.addEventListener('error', (e) => {
+            var location = e.filename + ':' + e.lineno.toString() + (e.colno ? ':' + e.colno.toString() : '');
+            alert(e.message + '\n' + location); // + (e.error ? '\n' + e.error.stack.toString() : ''));
+            // alert(e.toString());
+			event.preventDefault();
+		});
+
+        process.on('uncaughtException', (error) => {
+            alert(error);
+        });
 
         electron.ipcRenderer.on('open', (event, data) => {
             var file = data.file;
