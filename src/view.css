@@ -180,7 +180,7 @@ button:hover {
 
 .graph {
     display: block;
-    position: absolute;
+    /* position: absolute; */
     background-color: #fff;
     text-rendering: geometricPrecision;
     user-select: none;
