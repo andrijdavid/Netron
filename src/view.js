@@ -94,6 +94,10 @@ class View {
         }
     }
 
+    find() {
+        this._sidebar.open('<div></div>', 'Find');
+    }
+
     loadBuffer(buffer, identifier, callback) {
         var modelFactoryRegistry = [
             new OnnxModelFactory(),

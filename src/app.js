@@ -189,6 +189,13 @@ class Application {
         }
     }
 
+    find() {
+        var view = this._views.activeView;
+        if (view) {
+            view.send('find', {});
+        }
+    }
+
     resetZoom() {
         var view = this._views.activeView;
         if (view) {
@@ -365,6 +372,13 @@ class Application {
                     label: '&Copy',
                     accelerator: (process.platform === 'darwin') ? 'Cmd+C' : 'Ctrl+C',
                     click: () => this.copy(),
+                    enabled: view && view.path ? true : false
+                },
+                { type: 'separator' },
+                {
+                    label: '&Find...',
+                    accelerator: (process.platform === 'darwin') ? 'Cmd+F' : 'Ctrl+F',
+                    click: () => this.find(),
                     enabled: view && view.path ? true : false
                 }
             ]
